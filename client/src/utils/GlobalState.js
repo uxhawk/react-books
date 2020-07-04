@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from "react";
-import { UPDATE_SEARCH_RESULTS, FILTER_SEARCH_RESULTS, UPDATE_FAVORITES } from "./actions";
+import { UPDATE_SEARCH_RESULTS, FILTER_SEARCH_RESULTS, LOAD_FAVORITES } from "./actions";
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -18,10 +18,10 @@ const reducer = (state, action) => {
           searchResults: action.searchResults,
         };
 
-    case UPDATE_FAVORITES:
+    case LOAD_FAVORITES:
     return {
         ...state,
-        savedBooks: [action.book, ...state.savedBooks]
+        savedBooks: action.favorites
     };
 
   default:

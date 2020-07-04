@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../App.css';
 import { useStoreContext } from '../utils/GlobalState';
-import { FILTER_SEARCH_RESULTS, UPDATE_FAVORITES } from '../utils/actions';
+import { FILTER_SEARCH_RESULTS, ADD_TO_FAVORITES } from '../utils/actions';
 import API from '../utils/API';
 
 const Card = (props) => {
@@ -11,7 +11,7 @@ const Card = (props) => {
     function saveBtnClick(event) {
         etag = event.target.getAttribute('data-tag');
         addToSavedBooks();
-        filterSearchResults();
+        
     }
 
     function addToSavedBooks() {
@@ -26,10 +26,11 @@ const Card = (props) => {
 
         API.saveBook(bookDetails)
             .then(res => {
-                dispatch({
-                    type: UPDATE_FAVORITES,
-                    book: bookDetails,
-                })
+                // dispatch({
+                //     type: ADD_TO_FAVORITES,
+                //     book: bookDetails,
+                // })
+                filterSearchResults();
             })
             .catch((err) => console.log(err));
     }

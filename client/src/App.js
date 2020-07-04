@@ -1,19 +1,26 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-// import Jumbotron from './components/Jumbotron';
-import SearchForm from './components/SearchForm';
 import { StoreProvider } from './utils/GlobalState';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Search from './pages/Search';
+import SavedBooks from './pages/SavedBooks';
 
 function App() {
   return (
-    <>
-    <StoreProvider> 
-      <Navbar />
-      <SearchForm />
-    </StoreProvider>
-    </>
+    <Router>
+      <>
+        <StoreProvider> 
+          <Switch>
+            <Route exact path={['/', '/search']} component={Search} />
+            <Route exact path='/saved' component={SavedBooks} />
+          </Switch>
+        </StoreProvider>
+      </>
+    </Router>
+
+    
     
   );
 }
 
 export default App;
+
