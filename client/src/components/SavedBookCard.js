@@ -26,6 +26,7 @@ const SavedBookCard = (props) => {
                 dispatch({
                     type: LOAD_FAVORITES,
                     favorites: res.data,
+                    page: 'Saved'
                 })
             })
             .catch((err) => console.log(err));

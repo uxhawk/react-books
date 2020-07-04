@@ -5,6 +5,7 @@ import { LOAD_FAVORITES, PAGE_CHANGE } from '../utils/actions';
 import API from '../utils/API';
 import SavedBookCard from '../components/SavedBookCard';
 import shortid from 'shortid';
+import EmptyCard from '../components/EmptyCard';
 
 const SavedBooks = () => {
     const [state, dispatch] = useStoreContext();
@@ -38,7 +39,7 @@ const SavedBooks = () => {
                     state.savedBooks.map((book) => {
                         return <SavedBookCard book={book} key={shortid.generate()}/>
                     })
-                ) : 'No saved books yet'
+                ) : <EmptyCard />
             }
         </>
     );
