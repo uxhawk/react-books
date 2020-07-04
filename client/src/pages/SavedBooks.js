@@ -22,7 +22,8 @@ const SavedBooks = () => {
 
     useEffect(() => {
         getSavedBooks();
-    }, [])
+    }, []);
+    
     return (
         <>
         <Navbar />

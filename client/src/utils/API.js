@@ -15,6 +15,9 @@ export default {
       infoLink: bookData.infoLink,
     });
   },
+   deleteBook: function(id) {
+    return axios.delete("/api/books/" + id);
+  },
   searchForBooks: function(searchString) {
     return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchString}&download=epub&key=AIzaSyDkBRoBfAczEqSC1zVbTZsz4HeadIRAULA`);
   }
