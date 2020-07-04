@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from "react";
-import { UPDATE_SEARCH_RESULTS, FILTER_SEARCH_RESULTS, LOAD_FAVORITES } from "./actions";
+import { UPDATE_SEARCH_RESULTS, FILTER_SEARCH_RESULTS, LOAD_FAVORITES, PAGE_CHANGE } from "./actions";
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -21,8 +21,15 @@ const reducer = (state, action) => {
     case LOAD_FAVORITES:
     return {
         ...state,
-        savedBooks: action.favorites
+        savedBooks: action.favorites,
+        currentPage: action.page
     };
+
+    case PAGE_CHANGE:
+      return {
+          ...state,
+          currentPage: action.page
+      };
 
   default:
     return state;
@@ -33,6 +40,7 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     savedBooks: [],
     searchResults: [],
+    currentPage: '',
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

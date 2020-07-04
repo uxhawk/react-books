@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import { useStoreContext } from '../utils/GlobalState';
-import { LOAD_FAVORITES } from '../utils/actions';
+import { LOAD_FAVORITES, PAGE_CHANGE } from '../utils/actions';
 import API from '../utils/API';
 import SavedBookCard from '../components/SavedBookCard';
 import shortid from 'shortid';
@@ -15,6 +15,7 @@ const SavedBooks = () => {
                 dispatch({
                     type: LOAD_FAVORITES,
                     favorites: res.data,
+                    page: 'Saved'
                 })
             })
             .catch((err) => console.log(err));
